@@ -1,0 +1,23 @@
+@use "../../utils/styles.scss" as s;
+
+.container {
+    width: 240px;
+    height: 60px;
+    padding: 4px;
+    border-radius: 4px;
+    box-shadow: s.$element-shadow;
+}
+
+.display {
+    padding: 0 8px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: s.$main-grey;
+    font-size: s.$display-size;
+    color: s.$font-color;
+    border-radius: 6px;
+    font-weight: 800;
+}

@@ -1,0 +1,13 @@
+@use "./utils/styles.scss" as s;
+
+.app {
+    display: flex;
+    margin: 0 auto;
+    padding: 38px 80px 86px;
+    justify-content: space-between;
+    column-gap: 56px;
+    width: 695px;
+    height: 640px;
+    overflow: auto;
+    font-family: s.$main-font;
+}

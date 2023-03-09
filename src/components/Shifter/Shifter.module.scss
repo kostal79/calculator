@@ -1,0 +1,42 @@
+@use "../../utils/styles.scss" as s;
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 40px;
+  border: 2px solid s.$main-grey;
+  background-color: s.$main-grey;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.runtime, .constructor {
+    cursor: pointer;
+}
+
+.runtime, .constructor, .shift {
+  display: flex;
+  padding: 8px 12px;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.shift {
+  position: absolute;
+  padding: 8px 10px;
+  height: 100%;
+  width: 50%;
+  background-color: #fff;
+  border: 2px solid s.$main-grey;
+  border-radius: 6px;
+  transition: transform 0.3s;
+  align-items:center;
+
+  path {
+    stroke: s.$button-pressed;
+  }
+
+}
+

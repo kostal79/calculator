@@ -1,0 +1,33 @@
+@use "../../utils/styles.scss" as s;
+
+.button-block {
+  padding: 4px;
+  width: 240px;
+  height: 224px;
+  display: grid;
+  grid-template-columns: repeat(3, 72px);
+  flex-direction: row-reverse;
+  grid-auto-flow: dense;
+  row-gap: 8px;
+  column-gap: 8px;
+  border-radius: 4px;
+  box-shadow: s.$element-shadow;
+}
+
+button[data-button-value="0"] {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+button[data-button-value="9"],
+button[data-button-value="6"],
+button[data-button-value="3"] {
+  grid-column-start: 3;
+  grid-column-end: 3;
+}
+
+button[data-button-value="8"] button[data-button-value="5"],
+button[data-button-value="2"] {
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
