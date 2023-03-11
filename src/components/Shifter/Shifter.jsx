@@ -7,7 +7,6 @@ import  { ReactComponent as Selector} from "../../assets/selector.svg";
 
 const Shifter = () => {
   const activeMode = useSelector((state) => state.constr.mode);
-  console.log(activeMode);
   const dispatch = useDispatch();
 
   return (

@@ -1,14 +1,13 @@
-import React from 'react';
-import Styles from "./Display.module.scss"
+import React from "react";
+import DragHOC from "../../components/DragHOC/DragHOC";
+import Styles from "./Display.module.scss";
 
-const Display = ({text}) => {
-    return (
-      <div className={Styles.container} >
-          <div className={Styles.display}>
-            {text}
-          </div>
-      </div>
-    );
-}
+const Display = ({ drag, text }) => {
+  return (
+    <div className={Styles.container} ref={drag ? drag : null}>
+      <div className={Styles.display}>{text}</div>
+    </div>
+  );
+};
 
-export default Display
+export default DragHOC(Display);

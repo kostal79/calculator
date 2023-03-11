@@ -1,15 +1,19 @@
-import React from 'react';
-import ButtonOperator from '../../UI/ButtonOperator/ButtonOperator';
-import Styles from "./OperatorBlock.module.scss"
+import React from "react";
+import ButtonOperator from "../../UI/ButtonOperator/ButtonOperator";
+import DragHOC from "../DragHOC/DragHOC";
+import Styles from "./OperatorBlock.module.scss";
 
-const OperatorBlock = () => {
-  const operators = ["/", "*", "-", "+"]
-  const operatorsButtons = operators.map((operator) => <ButtonOperator value={operator} key={operator}/>)
-    return (
-      <div className={Styles.operators}>
-          {operatorsButtons}
-      </div>
-    );
-}
+const OperatorBlock = ({ drag }) => {
+  const operators = ["/", "*", "-", "+"];
+  const operatorsButtons = operators.map((operator) => (
+    <ButtonOperator value={operator} key={operator} />
+  ));
 
-export default OperatorBlock
+  return (
+    <div className={Styles.operators} ref={drag ? drag : null}>
+      {operatorsButtons}
+    </div>
+  );
+};
+
+export default DragHOC(OperatorBlock);

@@ -1,0 +1,19 @@
+@use "../../utils/styles.scss" as s;
+
+.icon {
+    width: 22px;
+    height: 22px;
+}
+
+.title {
+    margin-top: 15px;
+    font-size: 14px;
+    color: s.$button-pressed;
+    font-weight: 500;
+}
+
+.text {
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: 400;
+}

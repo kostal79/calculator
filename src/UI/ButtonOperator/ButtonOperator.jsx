@@ -3,9 +3,9 @@ import Styles from "./ButtonOperator.module.scss";
 
 const ButtonOperator = ({ value }) => {
   return (
-    <button className={Styles.button} date-button-value={value}>
+    <div className={Styles.button} date-button-value={value}>
       {value}
-    </button>
+    </div>
   );
 };
 

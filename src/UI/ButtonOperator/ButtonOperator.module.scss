@@ -18,11 +18,11 @@
     width: 152px;
 }
 
-button:hover {
+.button:hover {
     border: 2px solid s.$button-pressed;
 }
 
-button:active {
+.button:active {
     background-color: s.$button-pressed;
     color: s.$button-background;
 }
