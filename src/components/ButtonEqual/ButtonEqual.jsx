@@ -20,7 +20,13 @@ const ButtonEqual = ({ drag, opacity, inactive }) => {
   const dispatch = useDispatch();
 
   const handleOnClick = () => {
-    if (!["+", "-", "*", "/"].includes(display) && mode === "Runtime") {
+    if (
+      !["+", "-", "*", "/"].includes(display) &&
+      mode === "Runtime" &&
+      previosNumber &&
+      display &&
+      operator
+    ) {
       const ansver = calculate(previosNumber, display, operator);
       dispatch(setDisplay(ansver));
       dispatch(setOperator(null));

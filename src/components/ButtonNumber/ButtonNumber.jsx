@@ -24,10 +24,12 @@ const ButtonNumber = ({ value }) => {
       } else if (value === ",") {
         if (display === "0") {
           dispatch(setDisplay(`${display}${value}`));
-        } else {
+        } else if (!["+", "-", "*", "/", "Не определено"].includes(display)){
           dispatch(
             setDisplay(display.includes(value) ? display : display + value)
           );
+        } else {
+          return
         }
       } else {
         if (["0", "+", "-", "*", "/", "Не определено"].includes(display)) {

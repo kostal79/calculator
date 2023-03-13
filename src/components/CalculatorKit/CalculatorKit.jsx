@@ -16,23 +16,27 @@ const CalculatorKit = () => {
 
   const undoHandler = () => {
     const lastElement = queue.at(-1);
-    dispatch(undoDroped(lastElement))
-    dispatch(popQueue(lastElement))
-  }
+    dispatch(undoDroped(lastElement));
+    dispatch(popQueue(lastElement));
+  };
 
-  return (
-    <div className={Styles.calculator}>
-      {mode === "Constructor" && droped.length > 0 && (
-        <div className={Styles.undo} onClick={undoHandler}>
-          <UndoIcon />
-        </div>
-      )}
-      <Display name="display" text="0" constraction />
-      <OperatorBlock name="operator_block" constraction />
-      <ButtonBlock name="button_block" constraction />
-      <ButtonEqual name="equal" constraction />
-    </div>
-  );
+  if (mode === "Runtime") {
+    return;
+  } else {
+    return (
+      <div className={Styles.calculator}>
+        {mode === "Constructor" && droped.length > 0 && (
+          <div className={Styles.undo} onClick={undoHandler}>
+            <UndoIcon />
+          </div>
+        )}
+        <Display name="display" text="0" constraction />
+        <OperatorBlock name="operator_block" constraction />
+        <ButtonBlock name="button_block" constraction />
+        <ButtonEqual name="equal" constraction />
+      </div>
+    );
+  }
 };
 
 export default CalculatorKit;
