@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     droped: [],
+    queue: []
 }
 
 export const dropSlice = createSlice({
@@ -20,10 +21,22 @@ export const dropSlice = createSlice({
 
                 state.droped.unshift(action.payload)
             }
+        },
+        undoDroped: (state, action) => {
+            state.droped = state.droped.filter((item) => item !== action.payload)
+        },
+        addToQueue: (state, action) => {
+            if (!state.queue.includes(action.payload)) {
+
+                state.queue.push(action.payload)
+            }
+        },
+        popQueue: (state) => {
+            state.queue.pop()
         }
     },
 })
 
-export const { addDroped, addToBeginning, setDropList } = dropSlice.actions
+export const { addDroped, addToBeginning, setDropList, undoDroped, addToQueue, popQueue } = dropSlice.actions
 
 export default dropSlice.reducer

@@ -2,7 +2,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import './App.scss';
 import CalculatorKit from './components/CalculatorKit/CalculatorKit';
-import DropArea from './components/DropArea/DropArea';
+import DropContainer from './components/DropContainer/DropContainer';
 
 const App = () => {
 
@@ -10,7 +10,7 @@ const App = () => {
     <div className="app">
       <DndProvider backend={HTML5Backend}>
         <CalculatorKit />
-        <DropArea />
+        <DropContainer />
       </DndProvider>
     </div>
   );

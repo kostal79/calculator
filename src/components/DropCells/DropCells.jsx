@@ -1,32 +1,45 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Display from "../../UI/Display/Display";
 import ButtonBlock from "../ButtonBlock/ButtonBlock";
-import ButtonEqual from "../../UI/ButtonEqual/ButtonEqual";
 import OperatorBlock from "../OperatorBlock/OperatorBlock";
-import Styles from "./DropCells.module.scss";
 import { ItemTypes } from "../../utils/itemTypes";
 import { setDropList } from "../../redux/slices/dropSlice";
 import { useDrag, useDrop } from "react-dnd";
+import { ReactComponent as MarkLine } from "../../assets/marker.svg";
+import Display from "../Display/Display";
+import Styles from "./DropCells.module.scss";
+import ButtonEqual from "../ButtonEqual/ButtonEqual";
 
 const DropCells = () => {
+  const mode = useSelector((state) => state.constr.mode);
+  const items = useSelector((state) => state.drop.droped);
+  const dispatch = useDispatch();
+  const text = useSelector((state) => state.logic.display)
+
   const components = {
-    display: <Display />,
+    display: <Display text={text}/>,
     button_block: <ButtonBlock />,
     equal: <ButtonEqual />,
     operator_block: <OperatorBlock />,
   };
 
-  const mode = useSelector((state) => state.constr.mode);
-  const items = useSelector((state) => state.drop.droped);
-  const dispatch = useDispatch();
 
   const moveItem = (dragIndex, hoverIndex) => {
-    const draggedItem = items[dragIndex];
-    const itemsCopy = [...items];
-    itemsCopy.splice(dragIndex, 1);
-    itemsCopy.splice(hoverIndex, 0, draggedItem);
-    dispatch(setDropList(itemsCopy));
+    if (dragIndex === 0) {
+      return;
+    } else if (hoverIndex === 0) {
+      const draggedItem = items[dragIndex];
+      const itemsCopy = [...items];
+      itemsCopy.splice(dragIndex, 1);
+      itemsCopy.splice(1, 0, draggedItem);
+      dispatch(setDropList(itemsCopy));
+    } else {
+      const draggedItem = items[dragIndex];
+      const itemsCopy = [...items];
+      itemsCopy.splice(dragIndex, 1);
+      itemsCopy.splice(hoverIndex, 0, draggedItem);
+      dispatch(setDropList(itemsCopy));
+    }
   };
 
   const Card = ({ name, component, index }) => {
@@ -38,7 +51,7 @@ const DropCells = () => {
       }),
     });
 
-    const [{ canDrop, isOver }, drop] = useDrop({
+    const [{ isOver }, drop] = useDrop({
       accept: ItemTypes.SLIDE,
       drop: (item, monitor) => {
         const dragIndex = item.index;
@@ -53,20 +66,23 @@ const DropCells = () => {
       },
       collect: (monitor) => ({
         isOver: monitor.isOver(),
-        canDrop: monitor.canDrop(),
       }),
     });
 
     const opacity = isDragging ? 0.5 : 1;
-    const backgroundColor = isOver && canDrop ? "lightgray" : "white";
+    const cursor = name === "display" ? "not-allowed" : "grab";
 
     return (
-      <div
-        ref={mode === "Constructor" ? (node) => drag(drop(node)) : null}
-        style={{ opacity, backgroundColor }}
-      >
-        {component}
-      </div>
+      <>
+        {isOver && name !== "display" && index !== 3 && <MarkLine />}
+        <div
+          ref={mode === "Constructor" ? (node) => drag(drop(node)) : null}
+          style={{ opacity, cursor }}
+        >
+          {component}
+        </div>
+        {isOver && (name === "display" || index === 3) && <MarkLine />}
+      </>
     );
   };
 

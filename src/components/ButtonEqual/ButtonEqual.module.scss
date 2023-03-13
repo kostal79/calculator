@@ -12,6 +12,10 @@
     font-size: s.$fontSize;
     border-radius: 6px;
 
+    &:hover {
+        opacity: .8;
+    }
+
     &:active {
         opacity: .4;
         border: 1px solid s.$button-border;

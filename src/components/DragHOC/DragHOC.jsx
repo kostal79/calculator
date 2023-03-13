@@ -6,7 +6,11 @@ import { ItemTypes } from "../../utils/itemTypes";
 const DragHOC = (OriginalComponent) => {
   function NewComponent({ name, text, constraction }) {
     const activeMode = useSelector((state) => state.constr.mode);
-// eslint-disable-next-line
+    const dropList = useSelector((state) => state.drop.droped);
+    const opacity = dropList.includes(name) ? ".4" : "1";
+    const inactive = !dropList.includes(name) ? false : true;
+
+    // eslint-disable-next-line
     const [{ isDragging }, drag] = useDrag(() => ({
       type: ItemTypes.CARD,
       item: { name: name },
@@ -14,11 +18,13 @@ const DragHOC = (OriginalComponent) => {
         isDragging: !!monitor.isDragging(),
       }),
     }));
-    
+
     return (
       <OriginalComponent
-        drag={(activeMode === "Constructor") && constraction && drag}
+        drag={activeMode === "Constructor" && constraction && drag}
         text={text}
+        opacity={opacity}
+        inactive={inactive}
       />
     );
   }

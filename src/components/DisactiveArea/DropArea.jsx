@@ -1,9 +1,9 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import { addDroped, addToBeginning } from "../../redux/slices/dropSlice";
+import { addDroped, addToBeginning, addToQueue } from "../../redux/slices/dropSlice";
 
-import Banner from "../../UI/Banner/Banner";
+import Banner from "../Banner/Banner";
 import { ItemTypes } from "../../utils/itemTypes";
 import DropCells from "../DropCells/DropCells";
 import Styles from "./DisactiveArea.module.scss";
@@ -16,8 +16,10 @@ const DisactiveArea = () => {
   function addElement(name) {
     if (name === "display") {
       dispatch(addToBeginning(name));
+      dispatch(addToQueue(name));
     } else {
       dispatch(addDroped(name));
+      dispatch(addToQueue(name));
     }
   }
 

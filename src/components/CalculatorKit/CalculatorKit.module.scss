@@ -1,6 +1,19 @@
+@use "../../utils/styles.scss" as s;
+
 .calculator {
     display: flex;
     flex-direction: column;
     row-gap: 12px;
     justify-content:flex-end;
+
+    & .undo {
+        align-self: flex-end;
+        cursor: pointer;
+    }
+
+    & path {
+        stroke: s.$button-pressed;
+    }
+
+
 }
