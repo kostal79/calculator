@@ -10,7 +10,6 @@ const CardHOC = (OriginalComponent) => {
     const mode = useSelector((state) => state.constr.mode);
     const items = useSelector((state) => state.drop.droped);
     const dispatch = useDispatch();
-    const text = useSelector((state) => state.logic.display);
 
     const [{ isDragging }, drag] = useDrag({
       item: { name, index },
