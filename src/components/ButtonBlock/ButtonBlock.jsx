@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonNumber from "../ButtonNumber/ButtonNumber";
-import DragHOC from "../DragHOC/DragHOC";
+import DragHOC from "../../hocs/DragHOC";
 import Styles from "./ButtonBlock.module.scss";
 
 const ButtonBlock = ({ drag, opacity, inactive }) => {

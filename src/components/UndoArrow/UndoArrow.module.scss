@@ -1,0 +1,12 @@
+@use "../../utils/styles.scss" as s;
+
+
+.undo {
+    align-self: flex-end;
+    cursor: pointer;
+    & path {
+        stroke: s.$button-pressed;
+    }
+}
+
+

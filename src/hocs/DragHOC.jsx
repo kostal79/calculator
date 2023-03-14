@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
-import { ItemTypes } from "../../utils/itemTypes";
+import { ItemTypes } from "../utils/itemTypes";
 
 const DragHOC = (OriginalComponent) => {
   function NewComponent({ name, text, constraction }) {

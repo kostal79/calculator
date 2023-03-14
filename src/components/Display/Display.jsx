@@ -1,13 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import DragHOC from "../../components/DragHOC/DragHOC";
+import DragHOC from "../../hocs/DragHOC";
 import Styles from "./Display.module.scss";
 
 const Display = ({ drag, text, opacity, inactive }) => {
-  const pointerEvents = inactive && "none";
-  const cursor = !inactive && "grab";
   const mode = useSelector((state) => state.constr.mode);
   const display = useSelector((state) => state.logic.display);
+
+  const pointerEvents = inactive && "none";
+  const cursor = !inactive && "grab";
   const cursorDisplay = mode === "Runtime" && "default";
   const fontSize = display.length > 8 ? "19px" : "s.$display-size";
 

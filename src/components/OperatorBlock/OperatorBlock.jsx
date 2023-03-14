@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonOperator from "../ButtonOperator/ButtonOperator";
-import DragHOC from "../DragHOC/DragHOC";
+import DragHOC from "../../hocs/DragHOC";
 import Styles from "./OperatorBlock.module.scss";
 
 const OperatorBlock = ({ drag, opacity, inactive }) => {

@@ -1,47 +1,15 @@
 import React from "react";
-import { useDrop } from "react-dnd";
-import { useDispatch, useSelector } from "react-redux";
-import { addDroped, addToBeginning, addToQueue } from "../../redux/slices/dropSlice";
-
 import Banner from "../Banner/Banner";
-import { ItemTypes } from "../../utils/itemTypes";
 import DropCells from "../DropCells/DropCells";
+import DropAreaHOC from "../../hocs/DropAreaHOC";
 import Styles from "./DropArea.module.scss";
 
-const DropArea = () => {
-  const activeMode = useSelector((state) => state.constr.mode);
-  const droped = useSelector((state) => state.drop.droped);
-  const dispatch = useDispatch();
-
-  function addElement(name) {
-    if (name === "display") {
-      dispatch(addToBeginning(name));
-      dispatch(addToQueue(name));
-    } else {
-      dispatch(addDroped(name));
-      dispatch(addToQueue(name));
-    }
-  }
-
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: [ItemTypes.CARD],
-    drop: (item) => addElement(item.name),
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  }));
-
+const DropArea = ({ arearef, backgroundColor, isDroped }) => {
   return (
-    <div
-      className={Styles.droparea}
-      ref={activeMode === "Constructor" ? drop : null}
-      style={{
-        backgroundColor: `${isOver ? "rgba(240, 249, 255, 1)" : "transparent"}`,
-      }}
-    >
-      {droped.length > 0 ? <DropCells /> : <Banner />}
+    <div className={Styles.droparea} ref={arearef} style={{ backgroundColor }}>
+      {isDroped ? <DropCells /> : <Banner />}
     </div>
   );
 };
 
-export default DropArea;
+export default DropAreaHOC(DropArea);
