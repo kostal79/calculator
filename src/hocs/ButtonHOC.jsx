@@ -48,11 +48,10 @@ const ButtonHOC = (OriginalComponent) => {
 
     const operatorOnClick = (currentOperator) => {
       if (mode === "Runtime" && display !== "Не определено") {
-        if (!operator && currentOperator === "-" && display === "0") {
+        if ((!operator || operator === "=") && currentOperator === "-" && display === "0") {
           dispatch(setDisplay("-"));
           dispatch(setIsNewNumber(false));
-        }
-        if (!operator || operator === "=")  {
+        } else if (!operator || operator === "=")  {
           dispatch(setOperator(currentOperator));
           dispatch(setPreviosNumber(display));
           dispatch(setIsNewNumber(true));
